@@ -95,6 +95,7 @@
   max-height: 0;
 }
 
+/* tricket para mostrar o button só quando tiver focado no text area */
 .commentForm:focus-within footer {
   visibility: visible;
   max-height: none;  
