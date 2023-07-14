@@ -10,7 +10,6 @@
   border-radius: 8px;
 }
 
-
 .commentBox {
   flex: 1; /* esticar o maximo possivel do tamanho */  
 }
@@ -51,4 +50,38 @@
 
 .commentContent header button:hover {
   color: var(--red-500);
+}
+
+.commentContent p {
+  margin-top: 1rem;
+  color: var(--gray-300);
+}
+
+.commentBox footer {
+  margin-top: 1rem;
+}
+
+.commentBox footer button {
+  background: transparent;
+  border: 0;
+  color: var(--gray-400);
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+
+  border-radius: 2px;
+}
+
+.commentBox footer button:hover {
+  color: var(--green-300);
+}
+
+.commentBox footer button svg {
+  margin-right: .5rem;
+}
+
+.commentBox footer button span::before {
+  content: "•";
+  padding: 0 .25rem;
 }

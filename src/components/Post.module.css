@@ -98,7 +98,7 @@
 /* tricket para mostrar o button só quando tiver focado no text area */
 .commentForm:focus-within footer {
   visibility: visible;
-  max-height: none;  
+  max-height: none;
 }
 
 .commentForm button[type=submit] {
