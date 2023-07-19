@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import { format, formatDistanceToNow } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
 
@@ -7,7 +8,9 @@ import styles from './Post.module.css'
 import { useState } from 'react'
 
 export function Post({ author, publishedAt, content }) {
-  const [comments, setComments] = useState([1, 2])
+  const [comments, setComments] = useState(['Post bem legal.'])
+
+  const [newCommentText, setNewCommentText] = useState([''])
 
   console.log(content)
   const publishedDateFormatted = format(
@@ -26,7 +29,12 @@ export function Post({ author, publishedAt, content }) {
   function handleCreateNewComment() {
     event.preventDefault()
 
-    setComments([...comments, comments.length + 1])
+    setComments([...comments, newCommentText])
+    setNewCommentText('')
+  }
+
+  function hadleNewCommentChange() {
+    setNewCommentText(event.target.value)
   }
 
   return (
@@ -50,12 +58,12 @@ export function Post({ author, publishedAt, content }) {
       </header>
 
       <div className={styles.content}>
-        {content.map((line, i) => {
+        {content.map((line) => {
           if (line.type === 'paragraph') {
-            return <p key={i}>{line.content}</p>
+            return <p key={line.content}>{line.content}</p>
           } else if (line.type === 'link') {
             return (
-              <p key={i}>
+              <p key={line.content}>
                 <a href="#">{line.content}</a>
               </p>
             )
@@ -66,7 +74,12 @@ export function Post({ author, publishedAt, content }) {
       <form onSubmit={handleCreateNewComment} className={styles.commentForm}>
         <strong>Deixe seu comentário</strong>
 
-        <textarea placeholder="Deixe um comentário" />
+        <textarea
+          name="comment"
+          placeholder="Deixe um comentário"
+          value={newCommentText}
+          onChange={hadleNewCommentChange}
+        />
 
         <footer>
           <button type="submit">Publicar</button>
@@ -74,8 +87,8 @@ export function Post({ author, publishedAt, content }) {
       </form>
 
       <div className={styles.commentList}>
-        {comments.map((comment, i) => {
-          return <Comment key={i} />
+        {comments.map((comment) => {
+          return <Comment key={comment} content={comment} />
         })}
       </div>
     </article>
