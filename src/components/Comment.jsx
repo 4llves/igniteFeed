@@ -10,8 +10,12 @@ export function Comment({ content, onDeleteComment }) {
     onDeleteComment(content)
   }
 
+  // Sempre que for att uma info. E essa info depender do val dela mesma
+  // É sempre aconselhavem atualizar usando uma func, como a proxima func
   function handleLikeComment() {
-    setLikeCount(likeCount + 1)
+    setLikeCount((state) => {
+      return state + 1
+    })
   }
 
   return (
